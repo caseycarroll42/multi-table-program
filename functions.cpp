@@ -50,32 +50,51 @@ bool Table::addItem(int tupleType) {
 	}
 }
 
-bool Table::deleteItem(int tupleType)
+int Table::deleteItem(int tupleType, int ID)
 {
 	int key;
 	vector<tuple *>::iterator it;
 	
+	//no user input required
+	//goes through list and deletes grades associated with
+	// a student that is being deleted 
+	if(ID>-1)
+	{
+		for(it = table.begin(); it!=table.end(); ++it)
+		{
+			cout<<"iterate"<<endl;
+			if((*it)->getID() == ID)
+			{
+				table.erase(it);
+				it = it-1;//bump iterator back because erase shifted vector
+			}
+		}
+		return 0;
+	}
+
 	if(!(cin>>key))
 	{
 		cout<<endl<<"Error: INVALID NUMBER"<<endl;
 		cout<<"please try again"<<endl<<endl;
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize> :: max(), '\n');
-		return false;
+		return 0;
 	}
+
 	if(tupleType == STUDENT)
 	{
 		for(it = table.begin(); it!=table.end(); ++it)
 		{
 			if ((*it)->getID() == key)
 			{
+				int returnID = (*it)->getID();
 				table.erase(it);
-				return true;
+				return returnID; //allows to search through grade table!
 			}
 		}
 
 		cout<<"could not find by id"<<endl;
-		return false;
+		return 0;
 	} else if (tupleType == GRADE)
 	{
 		string classKey;
@@ -87,7 +106,7 @@ bool Table::deleteItem(int tupleType)
 				&&((*it)->getClassN() == classKey))
 			{
 				table.erase(it);
-				return true;
+				return 1;
 			}
 		}
 
@@ -101,10 +120,15 @@ void Table::displayTable()
 {
 	vector<tuple *>::iterator it;
 
+	if(table.empty()){
+		cout<<"empty table";
+		return;
+	}
+
 	for(it = table.begin(); it!=table.end(); ++it)
 	{
 		(*it)->displayInfo();
 		if(it != table.end()-1)
-			cout<<"- "<<endl;
+			cout<<"- ";
 	}
 }

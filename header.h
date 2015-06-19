@@ -10,6 +10,7 @@ using namespace std;
 
 const int STUDENT = 0;
 const int GRADE = 1;
+const int USER_DEFINED_ID = -1;
 
 //CLASSES
 
@@ -18,6 +19,7 @@ class tuple
 {
 	int id; //student id
 public:
+	tuple(){id=-1;}
 	tuple(int inputID):id(inputID){}
 
 	int getID(){return id;}
@@ -84,6 +86,6 @@ class Table
 public:
 	Table(){}
 	bool addItem(int tupleType);
-	bool deleteItem(int tupleType);
+	int deleteItem(int tupleType, int ID);
 	void displayTable();
 };

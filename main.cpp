@@ -32,8 +32,7 @@ int main() {
 			} else if (param2 =="delete")
 			{
 
-				if(studentTable.deleteItem(STUDENT))
-					cout<<"item deleted successfully"<<endl;
+				gradeTable.deleteItem(GRADE, studentTable.deleteItem(STUDENT, USER_DEFINED_ID));
 
 			} else if (param2 == "display")
 			{
@@ -62,8 +61,7 @@ int main() {
 			} else if (param2 =="delete")
 			{
 
-				if(gradeTable.deleteItem(GRADE))
-					cout<<"item deleted successfully"<<endl;
+				gradeTable.deleteItem(GRADE, USER_DEFINED_ID);
 
 			} else if (param2 == "display")
 			{
