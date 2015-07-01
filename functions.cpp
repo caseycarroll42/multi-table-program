@@ -47,7 +47,7 @@ bool Table::addItem(int tupleType) {
 	} else if (tupleType == GRADE)
 	{
 		string className;
-		double tempGrade;
+		char tempGrade;
 
 		cin >> className;
 

@@ -27,7 +27,7 @@ public:
 	virtual string getFirstN() {return "";}
 	virtual string getLastN() {return "";}
 	virtual string getClassN() {return "";}
-	virtual double getGrade() {return 0;}
+	virtual char getGrade() {return 0;}
 
 	virtual void displayInfo() {}
 };
@@ -61,9 +61,9 @@ public:
 class GradeTuple: public tuple
 {
 	string className;
-	double grade;
+	char grade;
 public:
-	GradeTuple(int inputID, string inputClassN, double inputGrade) : tuple(inputID)
+	GradeTuple(int inputID, string inputClassN, char inputGrade) : tuple(inputID)
 	{
 		className = inputClassN;
 		grade = inputGrade;
@@ -71,7 +71,7 @@ public:
 
 	//getters
 	string getClassN() {return className;}
-	double getGrade() {return grade;}
+	char getGrade() {return grade;}
 
 	void displayInfo()
 	{
