@@ -2,7 +2,7 @@
 #include <limits> //for int check
 #include <algorithm> //for transforming text to lowercase
 #include <string> //strings
-#include <cctype> 
+#include <cctype>
 #include <stdlib.h> /*exit*/
 #include <vector>
 
@@ -15,19 +15,19 @@ const int USER_DEFINED_ID = -1;
 //CLASSES
 
 //tuple is the base class for student and grade tuples
-class tuple 
+class tuple
 {
 	int id; //student id
 public:
-	tuple(){id=-1;}
-	tuple(int inputID):id(inputID){}
+	tuple() {id = -1;}
+	tuple(int inputID): id(inputID) {}
 
-	int getID(){return id;}
+	int getID() {return id;}
 
-	virtual string getFirstN(){return "";}
-	virtual string getLastN(){return "";}
-	virtual string getClassN(){return "";}
-	virtual double getGrade(){return 0;}
+	virtual string getFirstN() {return "";}
+	virtual string getLastN() {return "";}
+	virtual string getClassN() {return "";}
+	virtual double getGrade() {return 0;}
 
 	virtual void displayInfo() {}
 };
@@ -36,7 +36,7 @@ class StudentTuple: public tuple
 {
 	string first_name;
 	string last_name;
-public:	
+public:
 	StudentTuple(int inputID, string inputFirst, string inputLast) : tuple(inputID)
 	{
 		first_name = inputFirst;
@@ -44,16 +44,16 @@ public:
 	}
 
 	//getters
-	string getFirstN(){return first_name;}
-	string getLastN(){return last_name;}
+	string getFirstN() {return first_name;}
+	string getLastN() {return last_name;}
 
 	//setters
-	void setFirstN(string inFirst){first_name=inFirst;}
-	void setLastN(string inLast){last_name=inLast;}
+	void setFirstN(string inFirst) {first_name = inFirst;}
+	void setLastN(string inLast) {last_name = inLast;}
 
 	void displayInfo()
 	{
-		cout<<"( "<<getID()<<" - "<<getFirstN()<<" - "<<getLastN()<<" ) ";
+		cout << "( " << getID() << " , " << getFirstN() << " , " << getLastN() << " ) ";
 	}
 
 };
@@ -70,21 +70,21 @@ public:
 	}
 
 	//getters
-	string getClassN(){return className;}
-	double getGrade(){return grade;}
+	string getClassN() {return className;}
+	double getGrade() {return grade;}
 
 	void displayInfo()
 	{
-		cout<<"( "<<getID()<<" - "<<className<<" - "<<grade<<" ) ";
+		cout << "( " << getID() << " , " << className << " , " << grade << " ) ";
 	}
 };
 
-class Table 
+class Table
 {
 	/*must be a vector of base class pointers for polymorphism*/
 	vector<tuple *> table;
 public:
-	Table(){}
+	Table() {}
 	bool addItem(int tupleType);
 	int deleteItem(int tupleType, int ID);
 	void displayTable();
