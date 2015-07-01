@@ -71,7 +71,7 @@ bool Table::addItem(int tupleType) {
 				//if the new value is less than a value in the table, insert it before the next largest value
 				if (tempID < (*insertIT)->getID())
 				{
-
+					insertIT = table.insert(insertIT, new GradeTuple(tempID, className, tempGrade));
 					break;
 				} else if (tempID == (*insertIT)->getID()) {
 
@@ -79,6 +79,11 @@ bool Table::addItem(int tupleType) {
 					if (className < (*insertIT)->getClassN())
 					{
 						insertIT = table.insert(insertIT, new GradeTuple(tempID, className, tempGrade));
+						break;
+					} else {
+						++insertIT;
+						insertIT = table.insert(insertIT, new GradeTuple(tempID, className, tempGrade));
+						break;
 					}
 				}
 			}
@@ -108,7 +113,6 @@ int Table::deleteItem(int tupleType, int ID)
 	{
 		for (it = table.begin(); it != table.end(); ++it)
 		{
-			cout << "iterate" << endl;
 			if ((*it)->getID() == ID)
 			{
 				table.erase(it);
